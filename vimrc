@@ -2,8 +2,8 @@
 " General options {{{
     set encoding=utf-8
     " My colorset
-    " colorscheme turlututu
-    colorscheme elflord
+    colorscheme everforest
+    " colorscheme nord
     syntax on
     " Options I like
     " Wrap lines
@@ -52,11 +52,6 @@
     set statusline+=%{&paste?'\ PASTE\ ':''}
     set statusline+=%{&spell?'\ SPELL\ ':''}
     set statusline+=%#CursorIM#
-    set statusline+=%F " Full path to file
-    set statusline+=%M " Modified flag (+)
-    set statusline+=%#Cursor#
-    set statusline+=%#CursorLine#
-    set statusline+=\ %t\  " File name
     set statusline+=%= " Add to the right side
     set statusline+=%#CursorLine#
     set statusline+=\ %Y\  " File type
@@ -64,6 +59,10 @@
     set statusline+=\ %3l:%-2c\  " line + column
     set statusline+=%#Cursor#
     set statusline+=\ %3p%%\  " percentage
+    set statusline+=%#DiffAdd#%{(mode()=='n')?'\ \ NORMAL\ ':''}
+    set statusline+=%#DiffChange#%{(mode()=='i')?'\ \ INSERT\ ':''}
+    set statusline+=%#DiffDelete#%{(mode()=='r')?'\ \ REPLACE\ ':''}
+    set statusline+=%#Cursor#%{(mode()=='v')?'\ \ VISUAL\ ':''}
     " Display statusline always
     set laststatus=2
 " }}}
@@ -120,7 +119,6 @@
     vnoremap <down> <nop>
     vnoremap <right> <nop>
     vnoremap <left> <nop>
-    vnoremap <esc> <nop>
     " People suck but I still want to
     " be able to go out of Vim's insert mode
     " at some points in order to eat and sleep.
@@ -233,18 +231,14 @@ augroup END
 augroup filetype_md
     autocmd!
     autocmd Filetype markdown onoremap <buffer> ih :<c-u>execute "normal! ?^\[=,-\]\\+$\r:nohlsearch\rkvg_"<cr>
+    " Surround word by * or ** in normal mode
+    autocmd Filetype markdown nnoremap <leader>** viw<esc>a**<esc>bbi**<esc>lell
+    autocmd Filetype markdown nnoremap <leader>* viw<esc>a*<esc>bi*<esc>lel
+    " Surround visually selected region by * or ** in visual mode
+    autocmd Filetype markdown vnoremap <leader>** <esc>`>a**<esc>`<i**<esc>
+    autocmd Filetype markdown vnoremap <leader>* <esc>`>a*<esc>`<i*<esc>
+    " Show trailing whitespaces
 augroup END
-" }}}
-
-" vimplug related plugins
-" Plugin section {{{
-call plug#begin('~/.vim/plugged')
-
-Plug 'arcticicestudio/nord-vim'
-Plug 'dense-analysis/ale'
-Plug 'preservim/nerdtree'
-
-call plug#end()
 " }}}
 
 " ALE related commands {{{
