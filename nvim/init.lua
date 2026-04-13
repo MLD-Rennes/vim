@@ -1,6 +1,7 @@
 require("core")
---require("config.lazy")
---require('plugins')
+require("filetypes")
+require("config.lazy")
+require('plugins')
 --
 --vim.cmd([[
 --
