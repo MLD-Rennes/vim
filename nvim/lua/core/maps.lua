@@ -1,4 +1,6 @@
 local map = vim.api.nvim_set_keymap
+local autocmd = vim.api.nvim_create_autocmd
+local augroup = vim.api.nvim_create_augroup
 
 map('n', '<Space>', '', {})
 vim.g.mapleader = ' '
@@ -28,10 +30,10 @@ map('i', 'jk', '<esc>', options)
 map('v', 'jk', '<esc>', options)
 
 -- Surround visually selected region by ' or " in visual mode
-map('n', '<leader>"', 'viw<esc>a"<esc>bi"<esc>lel', options)
-map('n', '<leader>\'', 'viw<esc>a\'<esc>bi\'<esc>lel', options)
-map('v', '<leader>"', 'viw<esc>a"<esc>bi"<esc>lel', options)
-map('v', '<leader>\'', 'viw<esc>a\'<esc>bi\'<esc>lel', options)
+map('n', '<leader>"', 'ciw\"<C-r>\"\"<esc>', options)
+map('n', '<leader>\'', 'ciw\'<C-r>\"\'<esc>', options)
+map('v', '<leader>\"', 'c\"<C-r>\"\"<esc>', options)
+map('v', '<leader>\'', 'c\'<C-r>\"\'<esc>', options)
 
 -- Goes back to explore files mode
 map('n', "<leader>pv", ":Ex<CR>", options)
@@ -41,3 +43,4 @@ map('n', '/', '/\\v', options)
 
 -- THE LONG AWAITED STOP THIS GODDAMM HILIGHTSEARCH COMMAND
 map('n', '<leader>/', ':nohlsearch<CR>', options)
+
