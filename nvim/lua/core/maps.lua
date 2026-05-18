@@ -27,7 +27,7 @@ map('v', '<esc>', '<nop>', options)
 -- be able to go out of Vim's insert mode
 -- at some points in order to eat and sleep.
 map('i', 'jk', '<esc>', options)
-map('v', 'jk', '<esc>', options)
+map('v', '<C-j><C-k>', '<esc>', options)
 
 -- Surround visually selected region by ' or " in visual mode
 map('n', '<leader>"', 'ciw\"<C-r>\"\"<esc>', options)

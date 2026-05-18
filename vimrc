@@ -123,7 +123,7 @@
     " be able to go out of Vim's insert mode
     " at some points in order to eat and sleep.
     inoremap jk <esc>
-    vnoremap jk <esc>
+    vnoremap <C-jk> <esc>
     " Edit and source .vimrc
     nnoremap <leader>ev :split $MYVIMRC<cr>
     nnoremap <leader>sv :source $MYVIMRC<cr>
