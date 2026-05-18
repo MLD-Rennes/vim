@@ -16,12 +16,14 @@ return {
       -- langages installés et configurés
       ensure_installed = {
         "bash",
+        "csv",
         "gitignore",
         "json",
         "lua",
         "markdown",
         "markdown_inline",
         "python",
+        "tsv",
         "vim",
         "yaml",
       },
