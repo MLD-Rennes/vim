@@ -11,6 +11,13 @@ create_cmd({"BufNewFile"}, {
     command = '0r /home/mathledantec/.config/nvim/templates/template.py',
     desc = 'Opens a template when entering a new file.',
 })
+create_cmd({"BufNewFile"}, {
+    group = new_file,
+    pattern = {'*.sh'},
+    command = '0r /home/mathledantec/.config/nvim/templates/template.sh',
+    desc = 'Opens a template when entering a new file.',
+})
+
 
 
 
