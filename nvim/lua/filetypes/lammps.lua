@@ -9,5 +9,6 @@ lmp = 'lammps',
     ['.*%.lmp'] = 'lammps',
     ['in%..*'] = 'lammps',
     ['.*%.in'] = 'lammps',
+    ['.*%.mod'] = 'lammps',
   },
 }
