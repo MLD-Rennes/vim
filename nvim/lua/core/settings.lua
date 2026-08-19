@@ -3,7 +3,7 @@ local wo = vim.wo
 local bo = vim.bo
 
 --[[
-  Dr. G.Clavier wonderful vimrc file
+  Based on Dr. G.Clavier wonderful vimrc file
   General options
 --]]
 -- {{{
