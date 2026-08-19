@@ -44,3 +44,10 @@ map('n', '/', '/\\v', { desc = "Recherche avec mode magique" })
 
 map('n', '<leader>/', ':nohlsearch<CR>', { desc = "Arrêter la surbrillance" })
 
+-- Changement de fenêtre avec Ctrl + déplacement uniquement au lieu de Ctrl-w + déplacement
+map("n", "<C-h>", "<C-w>h", { desc = "Déplace le curseur dans la fenêtre de gauche" })
+map("n", "<C-j>", "<C-w>j", { desc = "Déplace le curseur dans la fenêtre du bas" })
+map("n", "<C-k>", "<C-w>k", { desc = "Déplace le curseur dans la fenêtre du haut" })
+map("n", "<C-l>", "<C-w>l", { desc = "Déplace le curseur dans la fenêtre de droite" })
+
+
