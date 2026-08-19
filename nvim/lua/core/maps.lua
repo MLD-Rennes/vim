@@ -1,46 +1,46 @@
-local map = vim.api.nvim_set_keymap
+--local map = vim.api.nvim_set_keymap
 local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
+
+local options = { noremap = true }
+
+local function map(mode, lhs, rhs, extra)
+   -- Fusionne options générales avec options spécifique à chaque mappings
+   vim.api.nvim_set_keymap(mode, lhs, rhs, vim.tbl_extend("force", options, extra or {}))
+end
 
 map('n', '<Space>', '', {})
 vim.g.mapleader = ' '
 
-local options = { noremap = true }
 -- I finished Dark Souls 1, 2 AND 3.
 -- I play Vim the hardcore way
-map('n', '<up>', '<nop>', options)
-map('n', '<down>', '<nop>', options)
-map('n', '<left>', '<nop>', options)
-map('n', '<right>', '<nop>', options)
-map('i', '<up>', '<nop>', options)
-map('i', '<down>', '<nop>', options)
-map('i', '<left>', '<nop>', options)
-map('i', '<right>', '<nop>', options)
-map('i', '<esc>', '<nop>', options)
-map('v', '<up>', '<nop>', options)
-map('v', '<down>', '<nop>', options)
-map('v', '<left>', '<nop>', options)
-map('v', '<right>', '<nop>', options)
-map('v', '<esc>', '<nop>', options)
+map('n', '<up>', '<nop>')
+map('n', '<down>', '<nop>')
+map('n', '<left>', '<nop>')
+map('n', '<right>', '<nop>')
+map('i', '<up>', '<nop>')
+map('i', '<down>', '<nop>')
+map('i', '<left>', '<nop>')
+map('i', '<right>', '<nop>')
+map('v', '<up>', '<nop>')
+map('v', '<down>', '<nop>')
+map('v', '<left>', '<nop>')
+map('v', '<right>', '<nop>')
 
 -- People suck but I still want to
 -- be able to go out of Vim's insert mode
 -- at some points in order to eat and sleep.
-map('i', 'jk', '<esc>', options)
-map('v', '<C-j><C-k>', '<esc>', options)
+map('i', 'jk', '<esc>', { desc = "Sortir du mode édition" })
+map('v', '<C-j><C-k>', '<esc>', { desc = "Sortir du mode visuel" })
 
--- Surround visually selected region by ' or " in visual mode
-map('n', '<leader>"', 'ciw\"<C-r>\"\"<esc>', options)
-map('n', '<leader>\'', 'ciw\'<C-r>\"\'<esc>', options)
-map('v', '<leader>\"', 'c\"<C-r>\"\"<esc>', options)
-map('v', '<leader>\'', 'c\'<C-r>\"\'<esc>', options)
+map('n', '<leader>"', 'ciw\"<C-r>\"\"<esc>', { desc = "Entourer de guillemets le mot suivant." })
+map('n', '<leader>\'', 'ciw\'<C-r>\"\'<esc>', { desc = "Entourer de guillemets simples le mot suivant" })
+map('v', '<leader>\"', 'c\"<C-r>\"\"<esc>', { desc = "Entourer de guillemets la sélection" })
+map('v', '<leader>\'', 'c\'<C-r>\"\'<esc>', { desc = "Entourer de guillemets simple la sélection" })
 
--- Goes back to explore files mode
-map('n', "<leader>pv", ":Ex<CR>", options)
+map('n', "<leader>pv", ":Ex<CR>", { desc = "Retourner au mode 'explorer fichier'" })
 
---Ensure search uses very magic mode
-map('n', '/', '/\\v', options)
+map('n', '/', '/\\v', { desc = "Recherche avec mode magique" })
 
--- THE LONG AWAITED STOP THIS GODDAMM HILIGHTSEARCH COMMAND
-map('n', '<leader>/', ':nohlsearch<CR>', options)
+map('n', '<leader>/', ':nohlsearch<CR>', { desc = "Arrêter la surbrillance" })
 
