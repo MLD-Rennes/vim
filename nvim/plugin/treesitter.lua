@@ -1,3 +1,4 @@
+local create_autocmd = vim.api.nvim_create_autocmd
 -- Note : la ligne de commande tree-sitter doit être installée sur votre système
 vim.pack.add({
   "https://github.com/romus204/tree-sitter-manager.nvim",
@@ -44,3 +45,19 @@ manager.setup({
   }
 })
 
+create_autocmd("PackChanged", {
+  callback = function(ev)
+    local name = ev.data.spec.name
+    local kind = ev.data.kind
+
+    if name == "nvim-treesitter" then
+      if not ev.data.active then
+        vim.cmd.packadd("nvim-treesitter")
+      end
+
+      vim.cmd("TSUpdate")
+
+      return
+    end
+  end,
+})
