@@ -50,4 +50,7 @@ map("n", "<C-j>", "<C-w>j", { desc = "Déplace le curseur dans la fenêtre du ba
 map("n", "<C-k>", "<C-w>k", { desc = "Déplace le curseur dans la fenêtre du haut" })
 map("n", "<C-l>", "<C-w>l", { desc = "Déplace le curseur dans la fenêtre de droite" })
 
+-- Navigation entre les buffers
+map("n", "<S-l>", ":bnext<CR>", { desc = "Déplace le curseur dans le buffer suivant" })
+map("n", "<S-h>", ":bprevious<CR>", { desc = "Déplace le curseur dans le buffer précédent" })
 
