@@ -1,5 +1,28 @@
+local create_autocmd = vim.api.nvim_create_autocmd
+create_autocmd("PackChanged", {
+  callback = function(ev)
+    local name = ev.data.spec.name
+    local kind = ev.data.kind
+
+    if kind ~= "install" and kind ~= "update" then
+      return
+    end
+
+    if name == "telescope-fzf-native.nvim" and (kind == "install" or kind == "update") then
+        vim.system({ 'cmake', '-S.', '-Bbuild', '-DCMAKE_BUILD_TYPE=Release' },
+        { cwd = ev.data.path }, function(obj)
+            if obj.code ~= 0 then
+                vim.notify 'cmake --build failed for telescope-fzf-native.nvim'
+            else
+                vim.system({ 'cmake', '--build', 'build', '--config', 'Release', '--target', 'install' }, { cwd = ev.data.path })
+            end
+        end)
+    end
+  end,
+})
+
 vim.pack.add({
-  --"https://github.com/nvim-telescope/telescope-fzf-native.nvim",
+  "https://github.com/nvim-telescope/telescope-fzf-native.nvim",
   "https://github.com/nvim-tree/nvim-web-devicons",
   "https://github.com/nvim-lua/plenary.nvim",
   "https://github.com/nvim-telescope/telescope.nvim",
@@ -24,17 +47,17 @@ telescope.setup({
       },
     },
   },
---  extensions = {
---    fzf = {
---        fuzzy = true,
---        override_generic_order = false,
---        override_file_sorter = true,
---        case_mode = "smart_case",
---    },
---  },
+  extensions = {
+    fzf = {
+        fuzzy = true,
+        override_generic_order = false,
+        override_file_sorter = true,
+        case_mode = "smart_case",
+    },
+  },
 })
 
---telescope.load_extension("fzf")
+telescope.load_extension("fzf")
 
 -- set keymaps
 local keymap = vim.keymap -- for conciseness
